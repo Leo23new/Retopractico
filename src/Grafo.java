@@ -55,8 +55,30 @@ public class Grafo {
 
     // ===== E3 =====
     private int recorrer(String id, boolean imprimir) {
-        return 0; // TODO E3
+        for (Vertice v = cabeza; v != null; v = v.sig) v.visitado = false;
+        Vertice inicio = buscar(id);
+        if (inicio == null) return 0;
+
+        Vertice[] cola = new Vertice[n];
+        int frente = 0, fin = 0, cont = 0;
+        cola[fin++] = inicio;
+        inicio.visitado = true;
+
+        while (frente < fin) {
+            Vertice actual = cola[frente++];
+            cont++;
+            if (imprimir) System.out.print(actual.id + (frente < n ? " " : ""));
+            for (Arista a = actual.ady; a != null; a = a.sig) {
+                if (!a.destino.visitado) {
+                    a.destino.visitado = true;
+                    cola[fin++] = a.destino;
+                }
+            }
+        }
+        if (imprimir) System.out.println();
+        return cont;
     }
+
 
     // ===== E3 =====
     public void bfs(String id) {
