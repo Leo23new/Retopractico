@@ -7,11 +7,12 @@ public class Main {
         parte3(g);
     }
 
-       // ===== E2 =====
+    // ===== E2 =====
     static void parte1(Grafo g) {
         System.out.println("=== PARTE 1: CONSTRUIR ===");
-        String[] equipos = {"Router", "Switch", "PC1", "PC2", "Impresora", "Servidor"};
-        for (String e : equipos) g.insertarVertice(e);
+        String[] equipos = { "Router", "Switch", "PC1", "PC2", "Impresora", "Servidor" };
+        for (String e : equipos)
+            g.insertarVertice(e);
 
         g.insertarArista("Router", "Switch", 1);
         g.insertarArista("Router", "Servidor", 4);
@@ -42,6 +43,17 @@ public class Main {
 
     // ===== E5 =====
     static void parte3(Grafo g) {
-        // TODO E5
+        System.out.println("\n=== PARTE 3: DECIDIR ===");
+        System.out.println("eliminarVertice(Switch): " + g.eliminarVertice("Switch"));
+        g.mostrar();
+        System.out.println("esConexo(Router): " + g.esConexo("Router"));
+        g.noAlcanzables("Router");
+
+        System.out.println("\n-- Reconectando con 2 enlaces nuevos --");
+        System.out.println(g.insertarArista("Router", "PC1", 2));
+        System.out.println(g.insertarArista("Router", "PC2", 2));
+        g.mostrar();
+        System.out.println("esConexo(Router): " + g.esConexo("Router"));
+        g.noAlcanzables("Router");
     }
 }
