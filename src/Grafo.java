@@ -82,7 +82,12 @@ public class Grafo {
 
     // ===== E3 =====
     public void bfs(String id) {
-        // TODO E3
+        if (buscar(id) == null) {
+            System.out.println("bfs: el equipo '" + id + "' no existe");
+            return;
+        }
+        System.out.print("BFS desde " + id + ": ");
+        recorrer(id, true);
     }
 
     // ===== E3 =====
