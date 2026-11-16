@@ -92,7 +92,11 @@ public class Grafo {
 
     // ===== E3 =====
     public int grado(String id) {
-        return -1; // TODO E3
+        Vertice v = buscar(id);
+        if (v == null) return -1;
+        int cont = 0;
+        for (Arista a = v.ady; a != null; a = a.sig) cont++;
+        return cont;
     }
 
     // ===== E4 =====
