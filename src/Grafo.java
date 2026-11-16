@@ -110,22 +110,57 @@ public class Grafo {
 
     // ===== E4 =====
     public boolean modificarLatencia(String origen, String destino, int nueva) {
-        return false; // TODO E4
+        Vertice vo = buscar(origen);
+        if (vo == null || nueva <= 0) return false;
+        for (Arista a = vo.ady; a != null; a = a.sig) {
+            if (a.destino.id.equals(destino)) {
+                a.latencia = nueva;
+                return true;
+            }
+        }
+        return false;
     }
 
     // ===== E4 =====
     public boolean eliminarArista(String origen, String destino) {
-        return false; // TODO E4
+        Vertice vo = buscar(origen);
+        if (vo == null) return false;
+        Arista ant = null;
+        for (Arista a = vo.ady; a != null; ant = a, a = a.sig) {
+            if (a.destino.id.equals(destino)) {
+                if (ant == null) vo.ady = a.sig;
+                else ant.sig = a.sig;
+                return true;
+            }
+        }
+        return false;
     }
 
     // ===== E4 =====
     public boolean eliminarVertice(String id) {
-        return false; // TODO E4
+        Vertice objetivo = buscar(id);
+        if (objetivo == null) return false;
+        // 1) quitar todas las aristas que LLEGAN al vértice
+        for (Vertice v = cabeza; v != null; v = v.sig) {
+            if (v != objetivo) eliminarArista(v.id, id);
+        }
+        // 2) quitar el vértice de la lista (sus aristas salientes se van con él)
+        if (cabeza == objetivo) {
+            cabeza = cabeza.sig;
+        } else {
+            Vertice ant = cabeza;
+            while (ant.sig != objetivo) ant = ant.sig;
+            ant.sig = objetivo.sig;
+        }
+        n--;
+        return true;
     }
 
     // ===== E4 =====
+    // true si desde 'id' se puede llegar a TODOS los equipos
     public boolean esConexo(String id) {
-        return false; // TODO E4
+        if (buscar(id) == null) return false;
+        return recorrer(id, false) == n;
     }
 
     // ===== E5 =====

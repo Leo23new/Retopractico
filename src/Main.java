@@ -38,7 +38,10 @@ public class Main {
 
     // ===== E4 =====
     static void parte2b(Grafo g) {
-        // TODO E4
+        System.out.println("\n=== PARTE 2: MODIFICAR ===");
+        System.out.println("modificarLatencia(Router, Servidor, 2): " + g.modificarLatencia("Router", "Servidor", 2));
+        System.out.println("eliminarArista(Servidor, PC2): " + g.eliminarArista("Servidor", "PC2"));
+        g.mostrar();
     }
 
     // ===== E5 =====
