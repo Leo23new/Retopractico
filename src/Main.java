@@ -27,7 +27,12 @@ public class Main {
 
     // ===== E3 =====
     static void parte2a(Grafo g) {
-        // TODO E3
+        System.out.println("\n=== PARTE 2: CONSULTAR ===");
+        g.bfs("Router");
+        System.out.println("grado(Router) = " + g.grado("Router"));
+        System.out.println("grado(Switch) = " + g.grado("Switch"));
+        System.out.println("grado(Impresora) = " + g.grado("Impresora"));
+        System.out.println("grado(Camara) = " + g.grado("Camara") + "  (no existe)");
     }
 
     // ===== E4 =====
